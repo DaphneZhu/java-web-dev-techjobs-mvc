@@ -21,7 +21,7 @@ public class ListController {
     static HashMap<String, String> columnChoices = new HashMap<>();
     static HashMap<String, Object> tableChoices = new HashMap<>();
 
-    public ListController () {
+    public ListController () { //it is a constructor
         columnChoices.put("all", "All");
         columnChoices.put("employer", "Employer");
         columnChoices.put("location", "Location");
@@ -34,7 +34,7 @@ public class ListController {
         tableChoices.put("coreCompetency", JobData.getAllCoreCompetency());
     }
 
-    @RequestMapping(value = "")
+    @RequestMapping(value = "") // localhost:8080/list/
     public String list(Model model) {
         model.addAttribute("columns", columnChoices);
         model.addAttribute("tableChoices", tableChoices);
@@ -43,10 +43,10 @@ public class ListController {
         model.addAttribute("positions", JobData.getAllPositionTypes());
         model.addAttribute("skills", JobData.getAllCoreCompetency());
 
-        return "list";
+        return "list"; // list.html
     }
 
-    @RequestMapping(value = "jobs")
+    @RequestMapping(value = "jobs") // localhost:8080/list/jobs
     public String listJobsByColumnAndValue(Model model, @RequestParam String column, @RequestParam String value) {
         ArrayList<Job> jobs;
         if (column.toLowerCase().equals("all")){
@@ -58,6 +58,6 @@ public class ListController {
         }
         model.addAttribute("jobs", jobs);
 
-        return "list-jobs";
+        return "list-jobs"; // list-job.html
     }
 }
